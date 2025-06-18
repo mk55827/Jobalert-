@@ -2,59 +2,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JobAlert</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JobAlert</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <header class="header">
-        <h1>JobAlert</h1>
-        <div class="icons">
-            <span>🔔</span>
-            <span>❓</span>
-        </div>
+  <div class="app">
+    <header>
+      <h1>JobAlert</h1>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Search jobs..." />
+      </div>
     </header>
-    <section class="search-filter">
-        <input type="text" placeholder="Search..." />
-        <div class="filters">
-            <button class="active">All</button>
-            <button>Government</button>
-            <button>Private</button>
-            <button>Part-Time</button>
-        </div>
+
+    <div class="filters">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Government</button>
+      <button class="filter-btn">Private</button>
+      <button class="filter-btn">Part-Time</button>
+    </div>
+
+    <section>
+      <h2>Latest Jobs</h2>
+      <div id="jobs-container" class="jobs"></div>
     </section>
-    <section class="latest-jobs">
-        <h2>Latest Jobs</h2>
-        <div class="job-list">
-            <div class="job-card">
-                <h3>Assistant Engineer</h3>
-                <p>Public Works Department</p>
-                <ul>
-                    <li>📅 Posted on April 25, 2024</li>
-                    <li>📄 Full-Time</li>
-                    <li>📍 New Delhi, India</li>
-                </ul>
-                <button class="apply">APPLY</button>
-            </div>
-            <div class="job-card">
-                <h3>Software Developer</h3>
-                <p>Tech Solutions Ltd.</p>
-                <ul>
-                    <li>📅 Posted on April 25, 2024</li>
-                    <li>📄 Full-Time</li>
-                    <li>📍 New Delhi, India</li>
-                </ul>
-                <button class="apply">APPLY</button>
-            </div>
-        </div>
-    </section>
-    <footer class="bottom-nav">
-        <button class="active">🏠 Home</button>
-        <button>🧾 Admit Card</button>
-        <button>✅ Result</button>
-        <button>⋯</button>
+
+    <footer>
+      <button class="nav-btn active">Home</button>
+      <button class="nav-btn">Admit Card</button>
+      <button class="nav-btn">Result</button>
+      <button class="nav-btn">More</button>
     </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
