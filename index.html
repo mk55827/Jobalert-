@@ -1,48 +1,126 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Job Alert</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial; margin: 20px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; border: 1px solid #ccc; }
-    th { background: #f4f4f4; }
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #f4f6fa;
+      color: #333;
+      padding: 1rem;
+    }
+    header {
+      background: #0077ff;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .search-filter {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    input[type="text"], select {
+      flex: 1;
+      padding: 0.7rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .job-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .job-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .job-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .job-card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .apply-btn {
+      margin-top: 0.7rem;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #0077ff;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
-  <h2>Latest Jobs</h2>
-  <table id="jobTable">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Link</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <header>Job Alert</header>
+
+  <div class="search-filter">
+    <input type="text" id="search" placeholder="Search job..." />
+    <select id="filter">
+      <option value="">All</option>
+      <option value="Govt">Govt</option>
+      <option value="Private">Private</option>
+    </select>
+  </div>
+
+  <div id="jobList" class="job-list"></div>
 
   <script>
-    fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQuO2uIzDXRp4LsboDnNcVKBY-w9fhr7NcM6w3wpR0sbf9sMe5yzPNjZup0xnfuu5JAIrPvDGeAsnBh/pub?output=csv")
-      .then(res => res.text())
-      .then(data => {
-        const rows = data.split("\n").slice(1);
-        const tbody = document.querySelector("#jobTable tbody");
-        rows.forEach(row => {
-          const cols = row.split(",");
-          if (cols.length >= 3) {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-              <td>${cols[0]}</td>
-              <td><a href="${cols[1]}" target="_blank">Apply</a></td>
-              <td>${cols[2]}</td>
-            `;
-            tbody.appendChild(tr);
-          }
-        });
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQuO2uIzDXRp4LsboDnNcVKBY-w9fhr7NcM6w3wpR0sbf9sMe5yzPNjZup0xnfuu5JAIrPvDGeAsnBh/pub?output=csv';
+
+    let jobs = [];
+
+    async function fetchJobs() {
+      const res = await fetch(sheetURL);
+      const data = await res.text();
+      const rows = data.split('\n').slice(1);
+      jobs = rows.map(row => {
+        const [title, desc, type, link] = row.split(',');
+        return { title, desc, type, link };
       });
+      renderJobs();
+    }
+
+    function renderJobs() {
+      const search = document.getElementById('search').value.toLowerCase();
+      const filter = document.getElementById('filter').value;
+      const container = document.getElementById('jobList');
+      container.innerHTML = '';
+      jobs
+        .filter(job => job.title.toLowerCase().includes(search) && (filter === '' || job.type === filter))
+        .forEach(job => {
+          const card = document.createElement('div');
+          card.className = 'job-card';
+          card.innerHTML = `
+            <h3>${job.title}</h3>
+            <p>${job.desc}</p>
+            <a class="apply-btn" href="${job.link}" target="_blank">Apply</a>
+          `;
+          container.appendChild(card);
+        });
+    }
+
+    document.getElementById('search').addEventListener('input', renderJobs);
+    document.getElementById('filter').addEventListener('change', renderJobs);
+
+    fetchJobs();
   </script>
 </body>
 </html>
