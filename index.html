@@ -1,14 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>JobAlert</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"/>
 </head>
 <body>
-  <header class="header">
+  <header class="top-header">
     <h1>JobAlert</h1>
     <div class="icons">
       <span>🔔</span>
@@ -16,8 +16,8 @@
     </div>
   </header>
 
-  <section class="search-section">
-    <input type="text" id="search" placeholder="Search..." />
+  <section class="search-filter">
+    <input type="text" placeholder="Search..." />
     <div class="filters">
       <button class="active">All</button>
       <button>Government</button>
@@ -26,18 +26,57 @@
     </div>
   </section>
 
-  <main>
+  <section class="jobs-section">
     <h2>Latest Jobs</h2>
-    <div id="jobs" class="job-cards"></div>
-  </main>
+    <div class="job-cards">
+      <div class="job-card">
+        <h3>Assistant Engineer</h3>
+        <p>Public Works Department</p>
+        <ul>
+          <li>📅 Posted on April 25, 2024</li>
+          <li>📄 Full-Time</li>
+          <li>📍 New Delhi, India</li>
+        </ul>
+        <button class="apply-btn">APPLY</button>
+      </div>
+      <div class="job-card">
+        <h3>Software Developer</h3>
+        <p>Tech Solutions Ltd.</p>
+        <ul>
+          <li>📅 Posted on April 25, 2024</li>
+          <li>📄 Full-Time</li>
+          <li>📍 New Delhi, India</li>
+        </ul>
+        <button class="apply-btn">APPLY</button>
+      </div>
+      <div class="job-card">
+        <h3>Bank Clerk</h3>
+        <p>State Bank of India</p>
+        <ul>
+          <li>📅 Posted on April 25, 2024</li>
+          <li>📄 Full-Time</li>
+          <li>📍 New Delhi, India</li>
+        </ul>
+        <button class="apply-btn">APPLY</button>
+      </div>
+      <div class="job-card">
+        <h3>Marketing Executive</h3>
+        <p>ABC Marketing Agency</p>
+        <ul>
+          <li>📅 Posted on April 25, 2024</li>
+          <li>📄 Full-Time</li>
+          <li>📍 New Delhi, India</li>
+        </ul>
+        <button class="apply-btn">APPLY</button>
+      </div>
+    </div>
+  </section>
 
   <footer class="bottom-nav">
-    <button class="active">🏠<br>Home</button>
-    <button>📇<br>Admit Card</button>
-    <button>✔️<br>Result</button>
-    <button>⋯<br>More</button>
+    <a class="active" href="#">🏠 Home</a>
+    <a href="#">🪪 Admit Card</a>
+    <a href="#">✔️ Result</a>
+    <a href="#">☰</a>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
