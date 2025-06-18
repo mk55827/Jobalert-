@@ -1,81 +1,48 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JobAlert</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+  <title>Job Alert</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; border: 1px solid #ccc; }
+    th { background: #f4f4f4; }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>JobAlert</h1>
-    <div class="icons">
-      <span>🔔</span>
-      <span>❓</span>
-    </div>
-  </header>
-
-  <div class="search-section">
-    <input type="text" placeholder="Search..." />
-    <div class="filters">
-      <button class="active">All</button>
-      <button>Government</button>
-      <button>Private</button>
-      <button>Part-Time</button>
-    </div>
-  </div>
-
   <h2>Latest Jobs</h2>
-  <div class="job-cards">
-    <div class="job-card">
-      <h3>Assistant Engineer</h3>
-      <p>Public Works Department</p>
-      <ul>
-        <li>📅 Posted on April 25, 2024</li>
-        <li>💼 Full-Time</li>
-        <li>📍 New Delhi, India</li>
-      </ul>
-      <button class="apply">APPLY</button>
-    </div>
-    <div class="job-card">
-      <h3>Software Developer</h3>
-      <p>Tech Solutions Ltd.</p>
-      <ul>
-        <li>📅 Posted on April 25, 2024</li>
-        <li>💼 Full-Time</li>
-        <li>📍 New Delhi, India</li>
-      </ul>
-      <button class="apply">APPLY</button>
-    </div>
-    <div class="job-card">
-      <h3>Bank Clerk</h3>
-      <p>State Bank of India</p>
-      <ul>
-        <li>📅 Posted on April 25, 2024</li>
-        <li>💼 Full-Time</li>
-        <li>📍 New Delhi, India</li>
-      </ul>
-      <button class="apply">APPLY</button>
-    </div>
-    <div class="job-card">
-      <h3>Marketing Executive</h3>
-      <p>ABC Marketing Agency</p>
-      <ul>
-        <li>📅 Posted on April 25, 2024</li>
-        <li>💼 Full-Time</li>
-        <li>📍 New Delhi, India</li>
-      </ul>
-      <button class="apply">APPLY</button>
-    </div>
-  </div>
+  <table id="jobTable">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Link</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-  <nav class="bottom-nav">
-    <a class="active">🏠 Home</a>
-    <a>📇 Admit Card</a>
-    <a>✔️ Result</a>
-    <a>⋯ More</a>
-  </nav>
+  <script>
+    fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQuO2uIzDXRp4LsboDnNcVKBY-w9fhr7NcM6w3wpR0sbf9sMe5yzPNjZup0xnfuu5JAIrPvDGeAsnBh/pub?output=csv")
+      .then(res => res.text())
+      .then(data => {
+        const rows = data.split("\n").slice(1);
+        const tbody = document.querySelector("#jobTable tbody");
+        rows.forEach(row => {
+          const cols = row.split(",");
+          if (cols.length >= 3) {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${cols[0]}</td>
+              <td><a href="${cols[1]}" target="_blank">Apply</a></td>
+              <td>${cols[2]}</td>
+            `;
+            tbody.appendChild(tr);
+          }
+        });
+      });
+  </script>
 </body>
 </html>
