@@ -4,123 +4,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Job Alert</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-    body {
-      background: #f4f6fa;
-      color: #333;
-      padding: 1rem;
-    }
-    header {
-      background: #0077ff;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: 600;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-    .search-filter {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
-    input[type="text"], select {
-      flex: 1;
-      padding: 0.7rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    .job-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .job-card {
-      background: white;
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .job-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-    .job-card p {
-      font-size: 0.9rem;
-      color: #555;
-    }
-    .apply-btn {
-      margin-top: 0.7rem;
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: #0077ff;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 500;
-    }
-  </style>
+  <title>JobAlert</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>Job Alert</header>
+  <header class="header">
+    <h1>JobAlert</h1>
+    <div class="icons">
+      <span>🔔</span>
+      <span>❓</span>
+    </div>
+  </header>
 
-  <div class="search-filter">
-    <input type="text" id="search" placeholder="Search job..." />
-    <select id="filter">
-      <option value="">All</option>
-      <option value="Govt">Govt</option>
-      <option value="Private">Private</option>
-    </select>
-  </div>
+  <section class="search-section">
+    <input type="text" id="search" placeholder="Search..." />
+    <div class="filters">
+      <button class="active">All</button>
+      <button>Government</button>
+      <button>Private</button>
+      <button>Part-Time</button>
+    </div>
+  </section>
 
-  <div id="jobList" class="job-list"></div>
+  <main>
+    <h2>Latest Jobs</h2>
+    <div id="jobs" class="job-cards"></div>
+  </main>
 
-  <script>
-    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQuO2uIzDXRp4LsboDnNcVKBY-w9fhr7NcM6w3wpR0sbf9sMe5yzPNjZup0xnfuu5JAIrPvDGeAsnBh/pub?output=csv';
+  <footer class="bottom-nav">
+    <button class="active">🏠<br>Home</button>
+    <button>📇<br>Admit Card</button>
+    <button>✔️<br>Result</button>
+    <button>⋯<br>More</button>
+  </footer>
 
-    let jobs = [];
-
-    async function fetchJobs() {
-      const res = await fetch(sheetURL);
-      const data = await res.text();
-      const rows = data.split('\n').slice(1);
-      jobs = rows.map(row => {
-        const [title, desc, type, link] = row.split(',');
-        return { title, desc, type, link };
-      });
-      renderJobs();
-    }
-
-    function renderJobs() {
-      const search = document.getElementById('search').value.toLowerCase();
-      const filter = document.getElementById('filter').value;
-      const container = document.getElementById('jobList');
-      container.innerHTML = '';
-      jobs
-        .filter(job => job.title.toLowerCase().includes(search) && (filter === '' || job.type === filter))
-        .forEach(job => {
-          const card = document.createElement('div');
-          card.className = 'job-card';
-          card.innerHTML = `
-            <h3>${job.title}</h3>
-            <p>${job.desc}</p>
-            <a class="apply-btn" href="${job.link}" target="_blank">Apply</a>
-          `;
-          container.appendChild(card);
-        });
-    }
-
-    document.getElementById('search').addEventListener('input', renderJobs);
-    document.getElementById('filter').addEventListener('change', renderJobs);
-
-    fetchJobs();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
