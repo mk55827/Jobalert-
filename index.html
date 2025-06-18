@@ -3,25 +3,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JobAlert</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Alert</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>JobAlert</h1>
-      <div class="notification-icons">
-        <span>🔔</span>
-        <span>❔</span>
-      </div>
-    </header>
-    <div class="search-bar">
-      <input type="text" id="search" placeholder="Search jobs..." />
-    </div>
-    <h2>Latest Jobs</h2>
-    <div id="jobs-container" class="job-listings"></div>
-  </div>
+  <header>
+    <h1>📢 Job Alerts</h1>
+    <input type="text" id="searchInput" placeholder="Search jobs..." />
+  </header>
+  <main id="job-list"></main>
   <script src="script.js"></script>
 </body>
 </html>
