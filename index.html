@@ -4,44 +4,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JobAlert - Home</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>JobAlert</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>JobAlert - Sarkari Job Updates</h1>
+    <h1>JobAlert</h1>
+    <div class="icons">
+      <span>🔔</span>
+      <span>❓</span>
+    </div>
   </header>
 
-  <section class="search-filter">
-    <input type="text" placeholder="Search jobs..." />
-    <select>
-      <option value="">Select Category</option>
-      <option value="govt">Government</option>
-      <option value="private">Private</option>
-      <option value="results">Results</option>
-    </select>
-  </section>
+  <div class="search-section">
+    <input type="text" placeholder="Search..." />
+    <div class="filters">
+      <button class="active">All</button>
+      <button>Government</button>
+      <button>Private</button>
+      <button>Part-Time</button>
+    </div>
+  </div>
 
-  <section class="job-card">
-    <h3>SSC GD Constable Recruitment 2025</h3>
-    <p>Apply Online for 50000+ Posts. Last Date: 20 July 2025.</p>
-    <button class="apply-btn">Apply Now</button>
-  </section>
+  <h2>Latest Jobs</h2>
+  <div class="job-cards">
+    <div class="job-card">
+      <h3>Assistant Engineer</h3>
+      <p>Public Works Department</p>
+      <ul>
+        <li>📅 Posted on April 25, 2024</li>
+        <li>💼 Full-Time</li>
+        <li>📍 New Delhi, India</li>
+      </ul>
+      <button class="apply">APPLY</button>
+    </div>
+    <div class="job-card">
+      <h3>Software Developer</h3>
+      <p>Tech Solutions Ltd.</p>
+      <ul>
+        <li>📅 Posted on April 25, 2024</li>
+        <li>💼 Full-Time</li>
+        <li>📍 New Delhi, India</li>
+      </ul>
+      <button class="apply">APPLY</button>
+    </div>
+    <div class="job-card">
+      <h3>Bank Clerk</h3>
+      <p>State Bank of India</p>
+      <ul>
+        <li>📅 Posted on April 25, 2024</li>
+        <li>💼 Full-Time</li>
+        <li>📍 New Delhi, India</li>
+      </ul>
+      <button class="apply">APPLY</button>
+    </div>
+    <div class="job-card">
+      <h3>Marketing Executive</h3>
+      <p>ABC Marketing Agency</p>
+      <ul>
+        <li>📅 Posted on April 25, 2024</li>
+        <li>💼 Full-Time</li>
+        <li>📍 New Delhi, India</li>
+      </ul>
+      <button class="apply">APPLY</button>
+    </div>
+  </div>
 
-  <section class="job-card">
-    <h3>UPSC NDA 2 Exam 2025 Admit Card</h3>
-    <p>Download NDA Exam Admit Card for August Session.</p>
-    <button class="apply-btn">Download Admit Card</button>
-  </section>
-
-  <section class="job-card">
-    <h3>Railway Group D Result 2025</h3>
-    <p>Check the final result and merit list PDF here.</p>
-    <button class="apply-btn">View Result</button>
-  </section>
-
-  <footer>
-    &copy; 2025 JobAlert | Powered by MK Digital
-  </footer>
+  <nav class="bottom-nav">
+    <a class="active">🏠 Home</a>
+    <a>📇 Admit Card</a>
+    <a>✔️ Result</a>
+    <a>⋯ More</a>
+  </nav>
 </body>
 </html>
